@@ -11,21 +11,19 @@ public class ActorsController(ActorsDbContext context) : Controller
 
     [HttpGet]
     [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
-    public async Task<ActionResult<IEnumerable<Actor>>> GetActors(string? q, int? pageSize, int? page)
+    public async Task<ActionResult<IEnumerable<Actor>>> GetActors(int? pageSize, int? page)
     {
-        var query = context.Actors;
-
-        if (pageSize != null && page != null)
+        if (pageSize.HasValue && page.HasValue)
         {
-            query.Skip((int)(Math.Floor((double)page.GetValueOrDefault(0)) * pageSize.GetValueOrDefault(1))).Take(pageSize.GetValueOrDefault(1));
+            if (pageSize < 1 || page < 1)
+            {
+                return BadRequest();
+            }
+
+            return await _context.Actors.Skip((int)((page - 1) * pageSize)).Take((int)pageSize).ToListAsync();
         }
 
-        if (q != null)
-        {
-            query.Where(a => a.FirstName.ToLower().Contains(q.ToLower()) || a.LastName.ToLower().Contains(q.ToLower()));
-        }
-
-        return await query.ToListAsync();
+        return await _context.Actors.ToListAsync();
     }
 
     [HttpGet("{id}")]

@@ -9,6 +9,20 @@ public class ActorsController(ActorsDbContext context) : Controller
 {
     private readonly ActorsDbContext _context = context;
 
+    [HttpGet("{id}")]
+    [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
+    public async Task<ActionResult<Actor>> GetActor(int id)
+    {
+        var actor = await _context.Actors.FindAsync(id);
+
+        if (actor == null)
+        {
+            return NotFound();
+        }
+
+        return actor;
+    }
+
     [HttpGet]
     [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
     public async Task<ActionResult<IEnumerable<Actor>>> GetActors(int? pageSize, int? page)
@@ -24,20 +38,6 @@ public class ActorsController(ActorsDbContext context) : Controller
         }
 
         return await _context.Actors.ToListAsync();
-    }
-
-    [HttpGet("{id}")]
-    [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
-    public async Task<ActionResult<Actor>> GetActor(int id)
-    {
-        var actor = await _context.Actors.FindAsync(id);
-
-        if (actor == null)
-        {
-            return NotFound();
-        }
-
-        return actor;
     }
 
     [HttpPost]

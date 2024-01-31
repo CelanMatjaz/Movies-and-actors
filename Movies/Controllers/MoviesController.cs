@@ -9,6 +9,20 @@ namespace MoviesService
     {
         private readonly MoviesDbContext _context = context;
 
+        [HttpGet("{id}")]
+        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
+        public async Task<ActionResult<Movie>> GetMovie(int id)
+        {
+            var movie = await _context.Movies.FindAsync(id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return movie;
+        }
+
         [HttpGet]
         [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
         public async Task<ActionResult<IEnumerable<Movie>>> GetMovies(int? pageSize, int? page)
@@ -24,20 +38,6 @@ namespace MoviesService
             }
 
             return await _context.Movies.ToListAsync();
-        }
-
-        [HttpGet("{id}")]
-        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
-        public async Task<ActionResult<Movie>> GetMovie(int id)
-        {
-            var movie = await _context.Movies.FindAsync(id);
-
-            if (movie == null)
-            {
-                return NotFound();
-            }
-
-            return movie;
         }
 
         [HttpPost]

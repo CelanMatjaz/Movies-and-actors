@@ -1,7 +1,6 @@
-using ActorsService.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ActorsService.Data;
+namespace ActorsService;
 
 public class ActorsDbContext : DbContext
 {

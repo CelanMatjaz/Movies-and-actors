@@ -1,4 +1,4 @@
-using ActorsService.Data;
+using ActorsService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

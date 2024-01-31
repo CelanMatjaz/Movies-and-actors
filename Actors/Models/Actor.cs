@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ActorsService.Models;
+namespace ActorsService;
 
 [Table("actors")]
 public class Actor

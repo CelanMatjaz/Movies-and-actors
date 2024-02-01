@@ -15,8 +15,11 @@ public class RequestCountEntry
     [Required, Column("endpoint")]
     public required string Endpoint { get; set; }
 
-    [Required, Column("query_params")]
-    public required string QueryParams { get; set; }
+    [Column("query_params")]
+    public string? QueryParams { get; set; }
+
+    [Column("body")]
+    public string? Body { get; set; }
 
     [Required, Column("method")]
     public required string Method { get; set; }

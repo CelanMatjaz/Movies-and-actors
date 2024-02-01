@@ -6,8 +6,7 @@ A simple .NET application with two containerized services.
 
 1. Clone repo
 2. Run `docker-compose up`
-3. Run migrations for Actors service with `dotnet ef database update --project Actors`
-3. Run migrations for Movies service with `dotnet ef database update --project Movies`
+3. Run either `migrations.bat` or `migrations.sh` to run neede migrations.
 
 ## Endpoints
 
@@ -25,3 +24,7 @@ Both APIs support pagination. Pagination is supported when providing the `pageSi
 ### Search
 
 The Movies service supports search filtering by title. Search filtering is enabled when providing a `search` query parameter. The filter will filter for movies with titles that contain the provided string. Search is case insensitive.
+
+### Request saving
+
+Each request is saved into the database with a simple schema that could be expanded/edited.

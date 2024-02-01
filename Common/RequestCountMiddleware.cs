@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 
 using CommonData;
+using System.Text;
 
 public class RequestCountMiddleware
 {
@@ -20,9 +21,19 @@ public class RequestCountMiddleware
             Endpoint = context.Request.Path,
             Method = context.Request.Method,
             QueryParams = context.Request.QueryString.Value != null ? context.Request.QueryString.Value : "",
+            Body = null,
             Timestamp = DateTime.Now.ToUniversalTime(),
             Service = _service
         };
+
+        try
+        {
+            newRequestEntry.Body = await new StreamReader(context.Request.Body, Encoding.UTF8).ReadToEndAsync();
+        }
+        catch
+        {
+
+        }
 
         dbContext.Entries.Add(newRequestEntry);
         await dbContext.SaveChangesAsync();

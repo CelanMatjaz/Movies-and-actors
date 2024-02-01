@@ -8,9 +8,11 @@ A simple .NET application with two containerized services.
 2. Run `docker-compose up`
 3. Run either `migrations.bat` or `migrations.sh` to run neede migrations.
 
+The database is seeded with some actors and movies. You can access fetch the data with the below urls.
+
 ## Endpoints
 
-The two services run on the following endpoints:
+The two services run on the following urls:
 
  - `localhost:8080/api/actors/${id?}` 
  - `localhost:8081/api/movies/${id?}` 

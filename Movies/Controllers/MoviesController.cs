@@ -25,8 +25,15 @@ namespace MoviesService
 
         [HttpGet]
         [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies(int? pageSize, int? page)
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies(int? pageSize, int? page, string search = "")
         {
+            var query = _context.Movies.AsQueryable();
+
+            if (search != "")
+            {
+                query = query.Where(m => m.Title.ToLower().Contains(search.ToLower()));
+            }
+
             if (pageSize.HasValue && page.HasValue)
             {
                 if (pageSize < 1 || page < 1)
@@ -34,10 +41,10 @@ namespace MoviesService
                     return BadRequest();
                 }
 
-                return await _context.Movies.Skip((int)((page - 1) * pageSize)).Take((int)pageSize).ToListAsync();
+                query = query.Skip((int)((page - 1) * pageSize)).Take((int)pageSize);
             }
 
-            return await _context.Movies.ToListAsync();
+            return await query.OrderBy(x => x.Id).ToListAsync();
         }
 
         [HttpPost]

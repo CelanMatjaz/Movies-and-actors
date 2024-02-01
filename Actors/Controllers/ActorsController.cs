@@ -34,10 +34,10 @@ public class ActorsController(ActorsDbContext context) : Controller
                 return BadRequest();
             }
 
-            return await _context.Actors.Skip((int)((page - 1) * pageSize)).Take((int)pageSize).ToListAsync();
+            return await _context.Actors.Skip((int)((page - 1) * pageSize)).Take((int)pageSize).OrderBy(x => x.Id).ToListAsync();
         }
 
-        return await _context.Actors.ToListAsync();
+        return await _context.Actors.OrderBy(x => x.Id).ToListAsync();
     }
 
     [HttpPost]

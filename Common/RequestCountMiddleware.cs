@@ -26,15 +26,6 @@ public class RequestCountMiddleware
             Service = _service
         };
 
-        try
-        {
-            newRequestEntry.Body = await new StreamReader(context.Request.Body, Encoding.UTF8).ReadToEndAsync();
-        }
-        catch
-        {
-
-        }
-
         dbContext.Entries.Add(newRequestEntry);
         await dbContext.SaveChangesAsync();
 

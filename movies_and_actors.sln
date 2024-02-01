@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies", "Movies\Movies.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actors", "Actors\Actors.csproj", "{1C200D52-A852-4BCF-9EDA-708C8EB3CA07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F7D4ABA6-10C8-4225-A8FD-3B458DF5AF79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1C200D52-A852-4BCF-9EDA-708C8EB3CA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C200D52-A852-4BCF-9EDA-708C8EB3CA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C200D52-A852-4BCF-9EDA-708C8EB3CA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D4ABA6-10C8-4225-A8FD-3B458DF5AF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D4ABA6-10C8-4225-A8FD-3B458DF5AF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D4ABA6-10C8-4225-A8FD-3B458DF5AF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D4ABA6-10C8-4225-A8FD-3B458DF5AF79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

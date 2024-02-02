@@ -98,7 +98,7 @@ namespace MoviesService
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteActor(int id)
+        public async Task<IActionResult> DeleteMovie(int id)
         {
             var foundMovie = await _context.Movies.FindAsync(id);
             if (foundMovie == null)
